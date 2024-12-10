@@ -1,0 +1,28 @@
+Tweet-Sentiment-Analyzer
+
+Sentiment Analysis is a very frequent term within text classification and is essentially to use natural language processing (quite often referred simply as NLP) + machine learning to interpret and classify emotions in text information. Imagine the task of determining whether a product’s review is positive or negative; you could do it yourself just by reading it, right? But what happens when the company you work for sells 2k products every single day? Are you pretending to read all the reviews and manually classify them? Let’s be honest, your job would be the worst ever. There’s where Sentiment Analysis comes in and makes your life and job easier.
+
+we cannot feed directly text and wait for them to solve your problems; instead, we have to make several transformations to your data until it reaches a representative numeric shape. 
+
+The common and most basic steps are:
+
+->Remove URLs and email addresses from every single sample
+->Remove punctuation signs 
+->Lowercase all text
+->Remove stop-words 
+->Stemming/Lemmatizing
+->Transform dataset (text) into numeric tensors
+
+
+from sklearn.metrics import confusion_matrix
+import matplotlib.pyplot as plt 
+matrix = confusion_matrix(Y_test.argmax(axis=1), np.around(predictions, decimals=0).argmax(axis=1))
+
+
+
+import seaborn as sns
+conf_matrix = pd.DataFrame(matrix, index = ['Neutral','Negative','Positive'],columns = ['Neutral','Negative','Positive'])
+#Normalizing
+conf_matrix = conf_matrix.astype('float') / conf_matrix.sum(axis=1)[:, np.newaxis]
+plt.figure(figsize = (15,15))
+sns.heatmap(conf_matrix, annot=True, annot_kws={"size": 15})
